@@ -8,5 +8,7 @@
 import Foundation
 
 protocol PhotoListViewModelActions: AnyObject {
-    
+    var photoList: Dynamic<[PhotoListModel]> { get }
+    var isLoading: Dynamic<Bool> { get }
+    var currentPage: Dynamic<Int> { get }
 }

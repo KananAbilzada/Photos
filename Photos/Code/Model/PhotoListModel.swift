@@ -8,13 +8,13 @@
 import Foundation
 
 struct PhotoListModel: Codable, Identifiable {
-    let id: String
-    let updated_at: String
-    let urls: PhotoListItemModel
+    let id: String?
+    let updated_at: String?
+    let urls: PhotoListItemModel?
 }
 
 struct PhotoListItemModel: Codable, Identifiable {
-    var id: String
-    let raw: String
-    let full: String
+    var id: String?
+    let raw: String?
+    let full: String?
 }
