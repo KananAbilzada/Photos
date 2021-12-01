@@ -14,6 +14,7 @@ class PhotosViewController: UIViewController, Storyboarded {
     
     // MARK: - IBOutlets
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var currentPageButton: UIButton!
     
     // MARK: - Main methods
     override func viewDidLoad() {
@@ -25,6 +26,15 @@ class PhotosViewController: UIViewController, Storyboarded {
     }
 
     // MARK: - IBActions
+    @IBAction func nextPageClicked(_ sender: UIButton) {
+        if viewModel!.currentPage.value < viewModel!.maxPageCount {
+            viewModel?.photoList.value = []
+            self.cachedImages = [:]
+            viewModel?.currentPage.value += 1
+            viewModel?.loadImages(currentPage: viewModel?.currentPage.value ?? 1)
+        }
+    }
+    
     @IBAction func searchClicked(_ sender: UIBarButtonItem) {
         let vc = SearchPhotoViewController.instantiate(storyboard: "Search")
         vc.title = "Search"
@@ -83,11 +93,12 @@ extension PhotosViewController {
         viewModel?.photoList.bind({ [weak self] data in
             print("photoListUpdated")
             self?.runInMainThread {
+                self?.cachedImages = [:]
+                self?.currentPageButton.setTitle("> Page \(self?.viewModel?.currentPage.value ?? 1)", for: .normal)
                 self?.collectionView.reloadData()
             }
         })
     }
-    
     
     /// bind loaded image to cell
     private func bindImageLoader() {

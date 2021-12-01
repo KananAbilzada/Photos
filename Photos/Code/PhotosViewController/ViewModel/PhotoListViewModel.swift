@@ -16,7 +16,7 @@ class PhotoListViewModel: PhotoListViewModelActions {
     var photoList: Dynamic<[PhotoListModel]>
     var isLoading: Dynamic<Bool>
     var currentPage: Dynamic<Int>
-    private let maxPageCount: Int = 10
+    let maxPageCount: Int = 10
     
     let photoService = PhotoService.shared
     
@@ -27,15 +27,15 @@ class PhotoListViewModel: PhotoListViewModelActions {
         self.currentPage           = Dynamic(1)
         self.imageRetrievedSuccess = Dynamic((0, nil))
     
-        self.loadImages()
+        self.loadImages(currentPage: self.currentPage.value)
     }
 
 }
 
 extension PhotoListViewModel {
     /// Loading images from given api
-    private func loadImages() {
-        photoService.getPhotos(currentPage: "\(currentPage.value)") { [weak self] response in
+    func loadImages(currentPage: Int) {
+        photoService.getPhotos(currentPage: "\(currentPage)") { [weak self] response in
             switch response {
             case .failure(let e):
                 print("error", e.localizedDescription)

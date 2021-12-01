@@ -211,8 +211,7 @@
 		E58E36972756597800FCDC04 /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				E58E36932756597400FCDC04 /* PhotoCollectionViewCell.swift */,
-				E58E36942756597400FCDC04 /* PhotoCollectionViewCell.xib */,
+				E58E36C02757BC1E00FCDC04 /* PhotoCell */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -334,6 +333,15 @@
 				E58E36BC27579B6E00FCDC04 /* SearchPhotoService.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		E58E36C02757BC1E00FCDC04 /* PhotoCell */ = {
+			isa = PBXGroup;
+			children = (
+				E58E36932756597400FCDC04 /* PhotoCollectionViewCell.swift */,
+				E58E36942756597400FCDC04 /* PhotoCollectionViewCell.xib */,
+			);
+			path = PhotoCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

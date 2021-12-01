@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rAU-fy-bpL">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="665"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dMh-mM-pzh">
                                     <size key="itemSize" width="157" height="156"/>
@@ -28,14 +28,28 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5P-pS-9QB">
+                                <rect key="frame" x="10" y="812" width="394" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="FXd-aE-vSh"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="&gt; Page 1"/>
+                                <connections>
+                                    <action selector="nextPageClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GTf-dc-RUx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rAU-fy-bpL" secondAttribute="bottom" id="8ve-YA-3RQ"/>
                             <constraint firstItem="rAU-fy-bpL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="QkR-S9-bMk"/>
                             <constraint firstItem="rAU-fy-bpL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="VXq-jT-xq3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rAU-fy-bpL" secondAttribute="trailing" id="alK-Cq-n6y"/>
+                            <constraint firstItem="I5P-pS-9QB" firstAttribute="top" secondItem="rAU-fy-bpL" secondAttribute="bottom" constant="7" id="dSi-p5-fO5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="I5P-pS-9QB" secondAttribute="trailing" constant="10" id="e7y-QU-HNI"/>
+                            <constraint firstItem="I5P-pS-9QB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="laH-Ha-cLt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="I5P-pS-9QB" secondAttribute="bottom" constant="10" id="yXI-8s-45y"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="iRP-bh-pho">
@@ -47,6 +61,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="rAU-fy-bpL" id="EfC-Xi-Ci8"/>
+                        <outlet property="currentPageButton" destination="I5P-pS-9QB" id="xAg-2f-Pjd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
