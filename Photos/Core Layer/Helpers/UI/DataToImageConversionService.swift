@@ -7,12 +7,28 @@
 
 import UIKit
 
-protocol DataToImageConversionService: AnyObject {
-    func getImage(from data: Data) -> UIImage?
+protocol StringImageLoaderActions: AnyObject {
+    func loadRemoteImageFrom(urlString: String,
+                             completion: @escaping (UIImage?) -> Void)
 }
 
-class DataToImageConversionServiceImplementation: DataToImageConversionService {
-    func getImage(from data: Data) -> UIImage? {
-        return UIImage(data: data)
+class StringImageLoader: StringImageLoaderActions {
+    func loadRemoteImageFrom(urlString: String,
+                             completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let resultImageData = data {
+                if let img = UIImage(data: resultImageData) {
+                    completion(img)
+                } else {
+                    completion(nil)
+                }
+            } else {
+                completion(nil)
+            }
+        }.resume()
     }
 }

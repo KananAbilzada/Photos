@@ -8,3 +8,4 @@
 import Foundation
 
 typealias PhotoGetPhotosResponseType = Result<[PhotoListModel], NetworkError>
+typealias SearchPhotoResponseType = Result<SearchPhotoModel, NetworkError>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photos-->
+        <scene sceneID="jTa-gU-dKc">
+            <objects>
+                <viewController storyboardIdentifier="SearchPhotoViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZnY-bg-6eo" customClass="SearchPhotoViewController" customModule="Photos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tus-DZ-9o3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="80x-Rk-BcG">
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="awQ-Th-m6v">
+                                    <size key="itemSize" width="157" height="156"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <searchBar contentMode="redraw" placeholder="Type more than 3 character for search" translatesAutoresizingMaskIntoConstraints="NO" id="Rzs-gh-zoJ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DQs-wm-UeX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="80x-Rk-BcG" firstAttribute="leading" secondItem="DQs-wm-UeX" secondAttribute="leading" id="1lf-ZT-x6D"/>
+                            <constraint firstItem="DQs-wm-UeX" firstAttribute="bottom" secondItem="80x-Rk-BcG" secondAttribute="bottom" id="88c-vN-3Pm"/>
+                            <constraint firstItem="DQs-wm-UeX" firstAttribute="trailing" secondItem="80x-Rk-BcG" secondAttribute="trailing" id="Nmq-YS-i2c"/>
+                            <constraint firstItem="80x-Rk-BcG" firstAttribute="top" secondItem="Rzs-gh-zoJ" secondAttribute="bottom" constant="5" id="PYU-6z-Sgc"/>
+                            <constraint firstItem="Rzs-gh-zoJ" firstAttribute="leading" secondItem="DQs-wm-UeX" secondAttribute="leading" id="dnP-TD-aiG"/>
+                            <constraint firstItem="Rzs-gh-zoJ" firstAttribute="top" secondItem="DQs-wm-UeX" secondAttribute="top" id="doG-vR-Zcy"/>
+                            <constraint firstItem="Rzs-gh-zoJ" firstAttribute="trailing" secondItem="DQs-wm-UeX" secondAttribute="trailing" id="k6z-jV-Lyf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Photos" id="uXy-DQ-8YF"/>
+                    <connections>
+                        <outlet property="collectionView" destination="80x-Rk-BcG" id="eGB-IF-yZ1"/>
+                        <outlet property="searchBar" destination="Rzs-gh-zoJ" id="fQE-bf-fXL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DYl-Za-F5S" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="742.02898550724649" y="76.339285714285708"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

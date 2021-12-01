@@ -1,13 +1,13 @@
 //
-//  PhotoService.swift
+//  SearchPhotoService.swift
 //  Photos
 //
-//  Created by Kanan`s Macbook Pro on 11/30/21.
+//  Created by Kanan Abilzada on 01.12.21.
 //
 
 import Foundation
 
-class PhotoService: PhotoServiceActions, Request {
+class SearchPhotoService: SearchPhotoServiceActions, Request {
 
     private let dataLoader: DataLoader
     
@@ -17,7 +17,7 @@ class PhotoService: PhotoServiceActions, Request {
     var queryItems: [URLQueryItem]
     var headers: [String : String]
     
-    static let shared = PhotoService()
+    static let shared = SearchPhotoService()
     
     // MARK: - Initialization
     init() {
@@ -38,20 +38,23 @@ class PhotoService: PhotoServiceActions, Request {
 }
 
 
-extension PhotoService {
-    /// gets images from api
+extension SearchPhotoService {
+    /// search photos for query
     /// - Parameter completion: completion handler for function
-    /// - Parameter currentPage: represent current page's count
-    func getPhotos(currentPage: String,
-                   completion: @escaping (PhotoGetPhotosResponseType) -> Void) {
-        self.path = "/photos"
+    /// - Parameter currentPage: represents current page's count
+    /// - Parameter query: searching parameter for photos
+    func searchPhoto(currentPage: String,
+                   query: String,
+                   completion: @escaping (SearchPhotoResponseType) -> Void) {
+        self.path = "/search/photos"
 
         self.queryItems = []
         let perPage     = URLQueryItem(name: "per_page", value: "30")
         let currentPage = URLQueryItem(name: "page", value: currentPage)
-        self.queryItems = [perPage, currentPage]
+        let searchQuery  = URLQueryItem(name: "query", value: query)
+        self.queryItems = [perPage, searchQuery, currentPage]
         
-        dataLoader.request(self, decodable: [PhotoListModel].self) { response in
+        dataLoader.request(self, decodable: SearchPhotoModel.self) { response in
             completion(response)
         }
     }

@@ -1,18 +1,20 @@
 //
-//  ViewController.swift
+//  SearchPhotoViewController.swift
 //  Photos
 //
-//  Created by Kanan`s Macbook Pro on 11/30/21.
+//  Created by Kanan Abilzada on 01.12.21.
 //
 
 import UIKit
 
-class PhotosViewController: UIViewController, Storyboarded {
+
+class SearchPhotoViewController: UIViewController, Storyboarded {
     // MARK: - Variables
-    private var viewModel: PhotoListViewModel?
+    private var viewModel: SearchPhotoViewModel?
     private var cachedImages: [Int: UIImage] = [:]
     
     // MARK: - IBOutlets
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - Main methods
@@ -24,27 +26,18 @@ class PhotosViewController: UIViewController, Storyboarded {
         setupViewModel()
     }
 
-    // MARK: - IBActions
-    @IBAction func searchClicked(_ sender: UIBarButtonItem) {
-        let vc = SearchPhotoViewController.instantiate(storyboard: "Search")
-        vc.title = "Search"
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
 }
 
 // MARK: - Setup
-extension PhotosViewController {
+extension SearchPhotoViewController {
     // MARK: Setup UI
     private func setupUI() {
         setupCollectionView()
-        
-        addGestureToViewForDismissSearchBar()
-        self.view.backgroundColor = .white
+        setupSearchBar()
     }
     
-    private func addGestureToViewForDismissSearchBar() {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.handleViewClicking(_:)))
-        self.view.addGestureRecognizer(gesture)
+    private func setupSearchBar() {
+        searchBar.delegate = self
     }
     
     private func setupCollectionView() {
@@ -56,20 +49,13 @@ extension PhotosViewController {
         
         collectionView.collectionViewLayout = createCollectionViewLayout()
     }
-}
 
-// MARK: - Handle user interactions
-extension PhotosViewController {
-    @objc
-    func handleViewClicking(_ gesture: UITapGestureRecognizer) {
-        self.view.endEditing(true)
-    }
 }
 
 // MARK: - Setup ViewModel
-extension PhotosViewController {
+extension SearchPhotoViewController {
     private func setupViewModel() {
-        viewModel = PhotoListViewModel()
+        viewModel = SearchPhotoViewModel()
         
         bindPhotoListToUI()
         bindImageLoader()
@@ -77,11 +63,10 @@ extension PhotosViewController {
 }
 
 // MARK: - Bind ViewModel To UI
-extension PhotosViewController {
+extension SearchPhotoViewController {
     /// bind all loaded photos
     private func bindPhotoListToUI() {
         viewModel?.photoList.bind({ [weak self] data in
-            print("photoListUpdated")
             self?.runInMainThread {
                 self?.collectionView.reloadData()
             }
@@ -115,9 +100,9 @@ extension PhotosViewController {
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
-extension PhotosViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension SearchPhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.photoList.value.count ?? 0
+        return viewModel?.photoList.value?.results?.count ?? 0
     }
         
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -125,7 +110,8 @@ extension PhotosViewController: UICollectionViewDelegate, UICollectionViewDataSo
                                                             for: indexPath) as? PhotoCollectionViewCell else {
             fatalError()
         }
-        cell.name.text = viewModel?.photoList.value[indexPath.row].user?.name ?? ""
+                
+        cell.name.text = viewModel?.photoList.value?.results?[indexPath.row].user?.name ?? ""
         
         return cell
     }
@@ -145,7 +131,7 @@ extension PhotosViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func createCollectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = Dimensions.photosItemSize
+        layout.itemSize = CGSize(width: self.view.frame.size.width - 20, height: Dimensions.screenWidth * 0.55)
         let numberOfCellsInRow = floor(Dimensions.screenWidth / Dimensions.photosItemSize.width)
         let inset = (Dimensions.screenWidth - (numberOfCellsInRow * Dimensions.photosItemSize.width)) / (numberOfCellsInRow + 1)
         layout.sectionInset = .init(top: inset,
@@ -157,7 +143,7 @@ extension PhotosViewController: UICollectionViewDelegate, UICollectionViewDataSo
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension PhotosViewController : UICollectionViewDelegateFlowLayout {
+extension SearchPhotoViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let cellCount = 2
 
@@ -170,3 +156,26 @@ extension PhotosViewController : UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
     }
 }
+
+// MARK: - UISearchBarDelegate
+extension SearchPhotoViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count > 3 {
+            viewModel?.searchImage(query: searchText)
+        } else {
+            viewModel?.photoList.value = nil
+        }
+    }
+}
+
+    // Default State
+// - Display a grid of pictures. ( request #1) +
+// - The number of pictures in a row - 3. +
+// - Implement pagination in the list (no more than 10 pages) +
+// - Number of pictures per page - 30. +
+
+    //Search by name:
+// - Implement search. ( request #2)
+// - The request should be sent, if was entered more than three characters
+// - The number of pictures in a row - 1.
+// - Needs to implement removing of pictures in the search mode. Removing is relevant only for the current search result

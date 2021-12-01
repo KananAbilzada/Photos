@@ -23,5 +23,5 @@ struct PhotoListItemModel: Codable {
 
 
 struct PhotoListUserModel: Codable {
-    var username: String?
+    var name: String?
 }
