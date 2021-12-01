@@ -11,10 +11,17 @@ struct PhotoListModel: Codable, Identifiable {
     let id: String?
     let updated_at: String?
     let urls: PhotoListItemModel?
+    let user: PhotoListUserModel?
 }
 
-struct PhotoListItemModel: Codable, Identifiable {
+struct PhotoListItemModel: Codable {
     var id: String?
+    let small: String?
     let raw: String?
-    let full: String?
+    let regular: String?
+}
+
+
+struct PhotoListUserModel: Codable {
+    var username: String?
 }
