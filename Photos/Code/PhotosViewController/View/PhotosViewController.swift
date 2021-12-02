@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SimpleImageViewer
 
 class PhotosViewController: UIViewController, Storyboarded {
     // MARK: - Variables
@@ -61,10 +62,10 @@ extension PhotosViewController {
         collectionView.register(PhotoCollectionViewCell.nib(),
                                 forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
         collectionView.collectionViewLayout = createCollectionViewLayout()
+        
+        collectionView.delegate   = self
+        collectionView.dataSource = self
     }
 }
 
@@ -73,6 +74,24 @@ extension PhotosViewController {
     @objc
     func handleViewClicking(_ gesture: UITapGestureRecognizer) {
         self.view.endEditing(true)
+    }
+    
+    // for cell click
+    @objc func handleContentViewClick(_ gesture: UITapGestureRecognizer) {
+        let p = gesture.location(in: collectionView)
+        
+        if let indexPath = collectionView.indexPathForItem(at: p) {
+            
+            let cell = collectionView.cellForItem(at: indexPath) as! PhotoCollectionViewCell
+            
+            let configuration = ImageViewerConfiguration { config in
+                config.imageView = cell.imageView
+            }
+
+            let imageViewerController = ImageViewerController(configuration: configuration)
+
+            present(imageViewerController, animated: true)
+        }
     }
 }
 
@@ -138,6 +157,9 @@ extension PhotosViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
         cell.name.text = viewModel?.photoList.value[indexPath.row].user?.name ?? ""
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleContentViewClick(_:)))
+        cell.contentView.addGestureRecognizer(tapGesture)
+        
         return cell
     }
     
@@ -165,6 +187,15 @@ extension PhotosViewController: UICollectionViewDelegate, UICollectionViewDataSo
                                     right: inset)
         return layout
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print("selected item...")
+////        let imageView = UIImageView()
+////
+////        let imageURL = viewModel?.photoList.value[indexPath.row].urls?.regular ?? ""
+////        imageView.setupImageViewer(url: URL(string: imageURL)!)
+//    }
+    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

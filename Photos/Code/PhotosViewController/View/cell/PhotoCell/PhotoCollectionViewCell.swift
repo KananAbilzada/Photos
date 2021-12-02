@@ -31,6 +31,8 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         self.contentView.addSubview(activityIndicator)
         activityIndicator.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
         activityIndicator.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        
+        
     }
     
     static func nib() -> UINib {

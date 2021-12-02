@@ -36,9 +36,11 @@
 		E58E36BB27579B3F00FCDC04 /* SearchPhotoServiceActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58E36BA27579B3F00FCDC04 /* SearchPhotoServiceActions.swift */; };
 		E58E36BD27579B6E00FCDC04 /* SearchPhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58E36BC27579B6E00FCDC04 /* SearchPhotoService.swift */; };
 		E58E36BF2757A08600FCDC04 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58E36BE2757A08600FCDC04 /* Storyboarded.swift */; };
+		F20150FF5430589411AEA8D7 /* Pods_Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F497EF76BBC62011A274F9 /* Pods_Photos.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01F497EF76BBC62011A274F9 /* Pods_Photos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Photos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CADF32275604AA003FB07C /* Photos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CADF35275604AA003FB07C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22CADF37275604AA003FB07C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 		22CADF5C275608DA003FB07C /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		22CADF60275609C9003FB07C /* PhotoListViewModelActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewModelActions.swift; sourceTree = "<group>"; };
 		22CADF6327560A3C003FB07C /* PhotoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewModel.swift; sourceTree = "<group>"; };
+		A9FE343C11433ACA92038898 /* Pods-Photos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photos.release.xcconfig"; path = "Target Support Files/Pods-Photos/Pods-Photos.release.xcconfig"; sourceTree = "<group>"; };
 		E58E367F27562D6500FCDC04 /* ApiURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiURL.swift; sourceTree = "<group>"; };
 		E58E36862756340500FCDC04 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		E58E36892756367800FCDC04 /* ApiCallerBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCallerBrain.swift; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 		E58E36BA27579B3F00FCDC04 /* SearchPhotoServiceActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoServiceActions.swift; sourceTree = "<group>"; };
 		E58E36BC27579B6E00FCDC04 /* SearchPhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoService.swift; sourceTree = "<group>"; };
 		E58E36BE2757A08600FCDC04 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
+		E619EDED7B52A65E8DBFC9C2 /* Pods-Photos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photos.debug.xcconfig"; path = "Target Support Files/Pods-Photos/Pods-Photos.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F20150FF5430589411AEA8D7 /* Pods_Photos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +93,8 @@
 			children = (
 				22CADF34275604AA003FB07C /* Photos */,
 				22CADF33275604AA003FB07C /* Products */,
+				F0458F0AF05C957B358EAE71 /* Pods */,
+				546A371A0805F61950B11B7D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +150,14 @@
 				22CADF5827560838003FB07C /* Dynamic.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		546A371A0805F61950B11B7D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				01F497EF76BBC62011A274F9 /* Pods_Photos.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E58E3681275630BC00FCDC04 /* Code */ = {
@@ -344,6 +359,16 @@
 			path = PhotoCell;
 			sourceTree = "<group>";
 		};
+		F0458F0AF05C957B358EAE71 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E619EDED7B52A65E8DBFC9C2 /* Pods-Photos.debug.xcconfig */,
+				A9FE343C11433ACA92038898 /* Pods-Photos.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -351,9 +376,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22CADF46275604B7003FB07C /* Build configuration list for PBXNativeTarget "Photos" */;
 			buildPhases = (
+				F01FB5933127B022B0604165 /* [CP] Check Pods Manifest.lock */,
 				22CADF2E275604AA003FB07C /* Sources */,
 				22CADF2F275604AA003FB07C /* Frameworks */,
 				22CADF30275604AA003FB07C /* Resources */,
+				C7A26F18AEE07D26C1AD17D7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -410,6 +437,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C7A26F18AEE07D26C1AD17D7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Photos/Pods-Photos-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Photos/Pods-Photos-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Photos/Pods-Photos-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F01FB5933127B022B0604165 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Photos-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		22CADF2E275604AA003FB07C /* Sources */ = {
@@ -583,6 +652,7 @@
 		};
 		22CADF47275604B7003FB07C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E619EDED7B52A65E8DBFC9C2 /* Pods-Photos.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -602,6 +672,7 @@
 		};
 		22CADF48275604B7003FB07C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9FE343C11433ACA92038898 /* Pods-Photos.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

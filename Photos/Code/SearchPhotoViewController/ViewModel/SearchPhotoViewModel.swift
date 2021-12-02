@@ -49,7 +49,7 @@ extension SearchPhotoViewModel {
     
     /// loading image from given string
     func loadImageFromGivenItem(with index: Int) {
-        let givenElementString = photoList.value?.results?[index].urls?.regular ?? ""
+        let givenElementString = photoList.value?.results?[index].urls?.small ?? ""
         
         imageLoaderService.loadRemoteImageFrom(urlString: givenElementString) { [weak self] image in
             print(UInt(index))

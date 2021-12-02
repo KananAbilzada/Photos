@@ -1,0 +1,16 @@
+PODS:
+  - SimpleImageViewer (1.1.1)
+
+DEPENDENCIES:
+  - SimpleImageViewer (~> 1.1.1)
+
+SPEC REPOS:
+  trunk:
+    - SimpleImageViewer
+
+SPEC CHECKSUMS:
+  SimpleImageViewer: 34c3a2cde2d9ac022146772cefc27fca14b0c8b1
+
+PODFILE CHECKSUM: 9d9b2320cb42ba50304005aacf29dbf7fd39c192
+
+COCOAPODS: 1.11.2

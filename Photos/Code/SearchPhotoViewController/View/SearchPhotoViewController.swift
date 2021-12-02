@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SimpleImageViewer
 
 class SearchPhotoViewController: UIViewController, Storyboarded {
     // MARK: - Variables
@@ -62,6 +62,27 @@ extension SearchPhotoViewController {
     }
 }
 
+// MARK: - User Interactions
+extension SearchPhotoViewController {
+    // for cell click
+    @objc func handleContentViewClick(_ gesture: UITapGestureRecognizer) {
+        let p = gesture.location(in: collectionView)
+        
+        if let indexPath = collectionView.indexPathForItem(at: p) {
+            
+            let cell = collectionView.cellForItem(at: indexPath) as! PhotoCollectionViewCell
+            
+            let configuration = ImageViewerConfiguration { config in
+                config.imageView = cell.imageView
+            }
+
+            let imageViewerController = ImageViewerController(configuration: configuration)
+
+            present(imageViewerController, animated: true)
+        }
+    }
+}
+
 // MARK: - Bind ViewModel To UI
 extension SearchPhotoViewController {
     /// bind all loaded photos
@@ -112,6 +133,9 @@ extension SearchPhotoViewController: UICollectionViewDelegate, UICollectionViewD
         }
                 
         cell.name.text = viewModel?.photoList.value?.results?[indexPath.row].user?.name ?? ""
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleContentViewClick(_:)))
+        cell.contentView.addGestureRecognizer(tapGesture)
         
         return cell
     }
